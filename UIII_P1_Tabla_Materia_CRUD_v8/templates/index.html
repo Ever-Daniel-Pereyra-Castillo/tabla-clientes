@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %}<title> Mi fruteria Ever Pereyra </title> {% endblock %}
+{% block cuerpo %}
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <h1 class="mt-4 mb-4">Mi fruteria Ever Pereyra</h1>
+    <img class="w-50" src="{% static  'img/fruteria.jpg' %}" alt="fruteria" width="100" height="auto">
+</div>
+{% endblock cuerpo %}
