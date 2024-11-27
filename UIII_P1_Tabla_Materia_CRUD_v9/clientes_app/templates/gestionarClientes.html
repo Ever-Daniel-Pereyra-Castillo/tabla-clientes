@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row"><!-- la fila -->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!-- columna izquierda -->
+        <h1> CLIENTES </h1>
+    <div class="card"> <!-- targeta -->
+        <div class="card-body">
+            <form action="/registrarClientes/" method="POST"> {% csrf_token %} <!--- formulario -->
+            
+                <div class="form-group">
+                    <input type="text" id="numID_cliente" name="numID_cliente" class="form-control"
+                    value="{{misClientes.ID_cliente}}" placeholder="ID del cliente" minLenght="1" maxLenght="10"  required>
+                </div>
+    
+                <div class="form-group py-2">
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" 
+                    value="{{misClientes.Nombre}}" placeholder="Nombre Del Cliente" maxLenght="50" required>     
+                </div>
+    
+                <div class="form-group py-2">
+                    <input type="text" id="txtCorreo" name="txtCorreo" class="form-control"
+                    value="{{misClientes.Correo}}" placeholder="Correo del cliente" max="50" required>
+                </div>
+    
+                <div class="form-group py-2">
+                    <input type="text" id="txtForma_de_pago" name="txtForma_de_pago" class="form-control"
+                    value="{{misClientes.Forma_de_pago}}" placeholder="Forma de pago del cliente" max="20" required>
+                </div>
+    
+                <div class="form-group py-2">
+                    <input type="text" id="txtProductos" name="txtProductos" class="form-control"
+                    value="{{misClientes.Productos}}" placeholder="Productos que compró el cliente" max="50" required>
+                </div>
+    
+                <div class="form-group py-2">
+                    <input type="text" id="numSaldo" name="numSaldo" class="form-control"
+                    value="{{misClientes.Saldo}}" placeholder="Saldo del cliente" max="50" minLenght="1" maxLenght="10" required>
+                </div>
+    
+                <div class="form-group py-2">
+                    <input type="text" id="txtDireccion" name="txtDireccion" class="form-control"
+                    value="{{misClientes.Direccion}}" placeholder="Dirección del cliente" max="100" required>
+                </div>
+    
+                <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form><!--- formulario -->
+        </div>
+    </div> <!-- targeta -->
+    </div><!-- columna izquierda -->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!-- columna derecha -->
+    <h1>Listado de Clientes</h1>
+    <img class="w-50" src="{% static  'img/clientes1.jpg' %}" alt="fruteria" width="100" height="auto">
+    <div class="table-responsive">
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID_cliente</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Forma_de_pago</th>
+            <th scope="col">Productos</th>
+            <th scope="col">Saldo</th>
+            <th scope="col">Direccion</th>
+            <th colspan="2">EDITAR - BORRAR</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for m in misClientes %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{m.ID_cliente}}</td>
+                    <td>{{m.Nombre}}</td>
+                    <td>{{m.Correo}}</td>
+                    <td>{{m.Forma_de_pago}}</td>
+                    <td>{{m.Productos}}</td>
+                    <td>{{m.Saldo}}</td>
+                    <td>{{m.Direccion}}</td>
+                    <td> <a href="seleccionarClientes/{{m.ID_cliente}}" class="btn btn-info">Editar</a> </td> <!-- Falta link -->
+                    <td> <a href="borrarClientes/{{m.ID_cliente}}" class="btn btn-danger">Borrar</a> </td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div.table.responsive>
+    </div> <!-- columna derecha -->
+</div><!-- la fila -->
+
+
+
+{% endblock %}
